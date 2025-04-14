@@ -11,7 +11,7 @@ style: function(e, obj) {
 
 goto: function(url) {
 	var xhttp = new XMLHttpRequest();
-	var err404 = "<!DOCTYPE html> <html> <head> <meta name='viewport' content='width=device-width, initial-scale=1'> <style> body, html { height: 100%; margin: 0; } .bg { /* The image used */ background-image: url('https://tiashdev.github.io/tiashfam-resorces/jeinjs/jein404.svg'); /* Full height */ height: 100%; /* Center and scale the image nicely */ background-		position: center; background-repeat: no-repeat; background-size: cover; } </style> </head> <body> <div class='bg'></div> </body> </html>";
+	var err404 = "<!DOCTYPE html> <html> <head> <meta name='viewport' content='width=device-width, initial-scale=1'> <style> body, html { height: 100%; margin: 0; } .bg { /* The image used */ background-image: url('https://tiashdev.github.io/tiashfam-resources/jeinjs/jein404.svg'); /* Full height */ height: 100%; /* Center and scale the image nicely */ background-		position: center; background-repeat: no-repeat; background-size: cover; } </style> </head> <body> <div class='bg'></div> </body> </html>";
 
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
