@@ -87,7 +87,7 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
   pe.appendChild(hl);
   var editobj = new this.Editor(tl, lang, hl, theme, linenums);
   editobj.update();
-  tl.oninput = editobj.update;
+  tl.oninput = () => editobj.update();
   return editobj;
 }
 
