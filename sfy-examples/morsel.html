@@ -3,6 +3,8 @@
 <script src="https://tiashdev.github.io/tiashfam-resources/morsel/index.js"></script>
 <body>
 
+<h1>Morsel Editor Demo</h1>
+
 <div id="morsel-editor">
 <pre id="morsel-editor-text-layer">
 &lt;!DOCTYPE html&gt;
@@ -22,6 +24,22 @@
 
 <pre id="demo"></pre>
 
+<h2>Did I mention line numbers are supported too?</h2>
+
+<div id="morsel-editor-line-numbers">
+<ol id="morsel-editor-text-layer-line-numbers">
+<li>&lt;!DOCTYPE html&gt;</li>
+<li>&lt;html&gt;</li>
+<li>&lt;body&gt;
+<li></li>
+<li>&lt;h1&gt;Testing an HTML Syntax Highlighter&lt;/h2&gt;</li>
+<li>&lt;p&gt;Hello world!&lt;/p&gt;</li>
+<li></li>
+<li>&lt;/body&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol>
+</div>
+
 <script>
 const editor = morsel.editor.init({ 
   parent: document.getElementById("morsel-editor"), 
@@ -37,6 +55,14 @@ function getText() {
 function setText() {
   editor.text = "<p>Hello world, this is my updated text!</p>"
 }
+
+morsel.editor.init({ 
+  parent: document.getElementById("morsel-editor-line-numbers"), 
+  text: document.getElementById("morsel-editor-text-layer-line-numbers"), 
+  lang: "html", 
+  offset: true,
+  linenums: true
+});
 </script>
 
 </body>
