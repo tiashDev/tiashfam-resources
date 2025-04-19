@@ -61,7 +61,7 @@ Editor: class {
             if (this.#linenums) {
                this.#text.innerHTML = "<li></li>";
             } else {
-               this.#text.innerHTML = "<div></div>";
+               this.#text.innerHTML = "<div> </div>";
             }
         }
         this.#highlight.innerHTML = this.#text.innerHTML;
