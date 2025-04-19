@@ -51,7 +51,12 @@ Editor: class {
 
     set text(val) {
         this.#text.textContent = val;
-        this.#highlight.textContent = val;
+        this.update();
+    }
+
+    update() {
+        if (!this.#text.innerHTML) this.#text.innerHTML = "<li></li>";
+        this.#highlight.innerHTML = this.#text.innerHTML;
         morsel.syntaxHighlight({ elmnt: this.#highlight, mode: this.#lang, theme: this.#theme });
     }
 },
@@ -79,14 +84,11 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
   tl.spellcheck = false;
   if (offset) {tl.style.top = "-16px";}
   pe.style.position = "relative";
-  hl.innerHTML = tl.innerHTML;
   pe.appendChild(hl);
-  morsel.syntaxHighlight({ elmnt: hl, mode: lang, theme });
-  tl.oninput = function() {
-     hl.innerHTML = tl.innerHTML;
-     morsel.syntaxHighlight({ elmnt: hl, mode: lang, theme });
-  }
-  return new this.Editor(tl, lang, hl, theme);
+  var editobj = new this.Editor(tl, lang, hl, theme, linenums);
+  editobj.update();
+  tl.oninput = editobj.update;
+  return editobj;
 }
 
 },
