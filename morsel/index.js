@@ -52,7 +52,7 @@ Editor: class {
     }
 
     set text(val) {
-        if (!this.linenums) {
+        if (!this.#linenums) {
            this.#text.textContent = val;
            this.update();
            return;
