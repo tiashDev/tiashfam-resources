@@ -20,6 +20,41 @@ defaultTheme: {
 
 editor: {
 
+Editor: class {
+    #lang;
+    #text;
+    #highlight;
+    #theme;
+    
+    constructor(text, lang, highlight, theme) {
+        this.#text = text;
+        this.#lang = lang;
+        this.#theme = theme;
+        this.#highlight = highlight;
+    }
+
+    get lang() {
+        return this.#lang;
+    }
+
+    set lang(_) {throw new Error("cannot set langauge of Editor after initialization");}
+
+    get theme() {
+        return this.#theme;
+    }
+
+    set theme(_) {throw new Error("cannot set theme of Editor after initialization");}
+
+    get text() {
+        return this.#text.textContent;
+    }
+
+    set text(val) {
+        this.#text.textContent = val;
+        morsel.syntaxHighlight({ elmnt: this.#highlight, mode: this.#lang, theme: this.#theme });
+    }
+},
+
 init({ parent, text, lang, offset = false, theme = morsel.defaultTheme }) {
   var tl = text;
   var pe = parent;
@@ -47,6 +82,7 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme }) {
      hl.innerHTML = tl.innerHTML;
      morsel.syntaxHighlight({ elmnt: hl, mode: lang, theme });
   }
+  return new this.Editor(tl, lang, hl, theme);
 }
 
 },
