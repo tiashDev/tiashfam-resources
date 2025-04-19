@@ -56,11 +56,25 @@ Editor: class {
     }
 },
 
-init({ parent, text, lang, offset = false, theme = morsel.defaultTheme }) {
+_get_rand_str(letters) {
+    var alpha = "QWERTYUIOPASDFGHJLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890_";
+    var str = "";
+    for (let x = 0; x < letters; x++) {
+        str += alpha[ Math.round( Math.random() * alpha.length ) ]
+    }
+    return str;
+},
+
+init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums = false }) {
   var tl = text;
   var pe = parent;
-  var hl = document.createElement("pre");
-  hl.id = "morsel-editor-highlight-layer";
+  if (!linenums) {
+     var hl = document.createElement("pre");
+  } else {
+     var hl = document.createElement("ol");
+     hl.id = `morsel-line-numbered-editor-${this._get_rand_str(10)}`;
+     document.styleSheets[0].insertRule(`#${hl.id}::marker`, { color: "grey" });
+  }
   tl.contentEditable = true;
   tl.style.fontFamily = "Consolas,'Courier New', monospace";
   tl.style.position = "absolute";
@@ -77,7 +91,6 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme }) {
   pe.style.position = "relative";
   hl.innerHTML = tl.innerHTML;
   pe.appendChild(hl);
-  hl = document.getElementById("morsel-editor-highlight-layer");
   morsel.syntaxHighlight({ elmnt: hl, mode: lang, theme });
   tl.oninput = function() {
      hl.innerHTML = tl.innerHTML;
@@ -436,6 +449,7 @@ syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
 }
 
 function morselOnLoad() {
+  
   Array.prototype.forEach.call(document.getElementsByClassName("morsel-html"), function(x) {
     morsel.syntaxHighlight({ elmnt: x, mode: "html" });
   });
