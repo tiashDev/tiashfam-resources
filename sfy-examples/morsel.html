@@ -46,6 +46,8 @@
 <pre id="demo2"></pre>
 
 <script>
+const textToSet = "<p>Hello world, this is my updated text!</p>\n<p>Multiline!</p>";
+
 const editor = morsel.editor.init({ 
   parent: document.getElementById("morsel-editor"), 
   text: document.getElementById("morsel-editor-text-layer"), 
@@ -58,7 +60,7 @@ function getText() {
 }
 
 function setText() {
-  editor.text = "<p>Hello world, this is my updated text!</p>";
+  editor.text = textToSet;
 }
 
 const editor2 = morsel.editor.init({ 
@@ -74,7 +76,7 @@ function getText2() {
 }
 
 function setText2() {
-  editor2.text = "<p>Hello world, this is my updated text!</p>\n<p>Multiline!</p>";
+  editor2.text = textToSet;
 }
 </script>
 
