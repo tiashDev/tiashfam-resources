@@ -53,7 +53,7 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme }) {
 
 syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
   var lang = (mode || "text");
-  var elmntObj = (document.querySelector(elmnt) || elmnt);
+  var elmntObj = (document.getElementById(elmnt) || elmnt);
   var elmntTxt = elmntObj.innerHTML;
   var tagcolor = theme.tagcolor;
   var tagnamecolor = theme.tagnamecolor;
