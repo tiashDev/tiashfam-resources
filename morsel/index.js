@@ -52,7 +52,18 @@ Editor: class {
     }
 
     set text(val) {
-        this.#text.textContent = val;
+        if (!this.linenums) {
+           this.#text.textContent = val;
+           this.update();
+           return;
+        }
+        this.#text.appendChild(
+            ...val.split("\n").map(function(x) {
+                var y = document.createElement("li");
+                y.innerText = x;
+                return y;
+            })
+        );
         this.update();
     }
 
