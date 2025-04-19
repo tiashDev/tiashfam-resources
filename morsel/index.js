@@ -56,15 +56,6 @@ Editor: class {
     }
 },
 
-_get_rand_str(letters) {
-    var alpha = "QWERTYUIOPASDFGHJLZXCVBNMqwertyuiopasdfghjklzxcvbnm_";
-    var str = "";
-    for (let x = 0; x < letters; x++) {
-        str += alpha[ Math.round( Math.random() * alpha.length ) ]
-    }
-    return str;
-},
-
 init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums = false }) {
   var tl = text;
   var pe = parent;
@@ -72,8 +63,7 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
      var hl = document.createElement("pre");
   } else {
      var hl = document.createElement("ol");
-     hl.id = `morsel-line-numbered-editor-${this._get_rand_str(10)}`;
-     document.styleSheets[0].insertRule(`#${hl.id}::marker`, { color: "grey" });
+     hl.className = "morsel-editor-line-numbered"
   }
   tl.contentEditable = true;
   tl.style.fontFamily = "Consolas,'Courier New', monospace";
@@ -449,7 +439,9 @@ syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
 }
 
 function morselOnLoad() {
-  
+  var lnstyle = document.createElement("style");
+  lnstyle.innerText = ".morsel-editor-line-numbered::markers { color: grey; }";
+  document.head.appendChild(lnstyle);
   Array.prototype.forEach.call(document.getElementsByClassName("morsel-html"), function(x) {
     morsel.syntaxHighlight({ elmnt: x, mode: "html" });
   });
