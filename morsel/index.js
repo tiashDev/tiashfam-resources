@@ -42,7 +42,7 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme }) {
   hl.innerHTML = tl.innerHTML;
   pe.appendChild(hl);
   hl = document.getElementById("morsel-editor-highlight-layer");
-  morsel.syntaxHighlight(hl, lang, theme);
+  morsel.syntaxHighlight({ elmnt: hl, mode: lang, theme });
   tl.oninput = function() {
      hl.innerHTML = tl.innerHTML;
      morsel.syntaxHighlight({ elmnt: hl, mode: lang, theme });
