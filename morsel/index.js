@@ -57,6 +57,7 @@ Editor: class {
            this.update();
            return;
         }
+        this.#text.innerHTML = "";
         this.#text.appendChild(
             ...val.split("\n").map(function(x) {
                 var y = document.createElement("li");
