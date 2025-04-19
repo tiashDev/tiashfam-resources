@@ -88,7 +88,6 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
      var hl = document.createElement("pre");
   } else {
      var hl = document.createElement("ol");
-     hl.className = "morsel-editor-line-numbered"
   }
   tl.contentEditable = true;
   tl.style.fontFamily = "Consolas,'Courier New', monospace";
