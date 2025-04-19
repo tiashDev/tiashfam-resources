@@ -57,7 +57,7 @@ Editor: class {
 },
 
 _get_rand_str(letters) {
-    var alpha = "QWERTYUIOPASDFGHJLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890_";
+    var alpha = "QWERTYUIOPASDFGHJLZXCVBNMqwertyuiopasdfghjklzxcvbnm_";
     var str = "";
     for (let x = 0; x < letters; x++) {
         str += alpha[ Math.round( Math.random() * alpha.length ) ]
