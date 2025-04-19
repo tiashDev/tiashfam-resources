@@ -40,6 +40,11 @@
 </ol>
 </div>
 
+<p><button onclick="getText2()">Get the text!</button></p>
+<p><button onclick="setText2()">Set the text!</button></p>
+
+<pre id="demo2"></pre>
+
 <script>
 const editor = morsel.editor.init({ 
   parent: document.getElementById("morsel-editor"), 
@@ -56,13 +61,21 @@ function setText() {
   editor.text = "<p>Hello world, this is my updated text!</p>";
 }
 
-morsel.editor.init({ 
+const editor2 = morsel.editor.init({ 
   parent: document.getElementById("morsel-editor-line-numbers"), 
   text: document.getElementById("morsel-editor-text-layer-line-numbers"), 
   lang: "html", 
   offset: true,
   linenums: true
 });
+
+function getText2() {
+  document.getElementById("demo2").innerText = editor2.text;
+}
+
+function setText2() {
+  editor2.text = "<p>Hello world, this is my updated text!</p>\n<p>Multiline!</p>";
+}
 </script>
 
 </body>
