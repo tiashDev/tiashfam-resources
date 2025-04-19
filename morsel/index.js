@@ -57,11 +57,13 @@ Editor: class {
     }
 
     update() {
-        if (!this.#text.innerHTML) 
-            if (this.#linenums) 
+        if (!this.#text.innerHTML) {
+            if (this.#linenums) {
                this.#text.innerHTML = "<li></li>";
-            else
+            } else {
                this.#text.innerHTML = "<div></div>";
+            }
+        }
         this.#highlight.innerHTML = this.#text.innerHTML;
         morsel.syntaxHighlight({ elmnt: this.#highlight, mode: this.#lang, theme: this.#theme });
     }
