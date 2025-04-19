@@ -484,6 +484,9 @@ function morselOnLoad() {
   Array.prototype.forEach.call(document.getElementsByClassName("morsel-js"), function(x) {
     morsel.syntaxHighlight({ elmnt: x, mode: "js" });
   });
+  Array.prototype.forEach.call(document.getElementsByClassName("morsel-text"), function(x) {
+    morsel.syntaxHighlight({ elmnt: x, mode: "text" });
+  });
 }
 
 morselOnLoad();
