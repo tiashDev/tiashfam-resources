@@ -25,12 +25,14 @@ Editor: class {
     #text;
     #highlight;
     #theme;
+    #linenums;
     
-    constructor(text, lang, highlight, theme) {
+    constructor(text, lang, highlight, theme, linenums) {
         this.#text = text;
         this.#lang = lang;
         this.#theme = theme;
         this.#highlight = highlight;
+        this.#linenums = linenums;
     }
 
     get lang() {
@@ -55,7 +57,7 @@ Editor: class {
     }
 
     update() {
-        if (!this.#text.innerHTML) this.#text.innerHTML = "<li></li>";
+        if (!this.#text.innerHTML && this.#linenums) this.#text.innerHTML = "<li></li>";
         this.#highlight.innerHTML = this.#text.innerHTML;
         morsel.syntaxHighlight({ elmnt: this.#highlight, mode: this.#lang, theme: this.#theme });
     }
