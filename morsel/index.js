@@ -51,6 +51,7 @@ Editor: class {
 
     set text(val) {
         this.#text.textContent = val;
+        this.#highlight.textContent = val;
         morsel.syntaxHighlight({ elmnt: this.#highlight, mode: this.#lang, theme: this.#theme });
     }
 },
