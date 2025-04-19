@@ -58,18 +58,13 @@ Editor: class {
            return;
         }
         this.#text.innerHTML = "";
-        this.#text.appendChild(
+        this.#text.append(
             ...val.split("\n").map(function(x) {
                 var y = document.createElement("li");
                 y.innerText = x;
                 return y;
             })
         );
-        console.log(val.split("\n").map(function(x) {
-                var y = document.createElement("li");
-                y.innerText = x;
-                return y;
-            }))
         this.update();
     }
 
