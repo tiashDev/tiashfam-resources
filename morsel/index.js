@@ -475,9 +475,6 @@ syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
 }
 
 function morselOnLoad() {
-  var lnstyle = document.createElement("style");
-  lnstyle.innerText = ".morsel-editor-line-numbered::markers { color: grey; }";
-  document.head.appendChild(lnstyle);
   Array.prototype.forEach.call(document.getElementsByClassName("morsel-html"), function(x) {
     morsel.syntaxHighlight({ elmnt: x, mode: "html" });
   });
