@@ -1,8 +1,28 @@
 const morsel = {
 
+defaultTheme: {
+    tagcolor: 'mediumblue',
+    tagnamecolor: 'brown',
+    attributecolor: 'red',
+    attributevaluecolor: 'mediumblue',
+    commentcolor: 'green',
+    cssselectorcolor: 'brown',
+    csspropertycolor: 'red',
+    csspropertyvaluecolor: 'mediumblue',
+    cssdelimitercolor: 'black',
+    cssimportantcolor: 'red',  
+    jscolor: 'black',
+    jskeywordcolor: 'mediumblue',
+    jsstringcolor: 'brown',
+    jsnumbercolor: 'red',
+    jspropertycolor: 'black'
+  },
+
 editor: {
 
-init: function(pe, tl, lang, offset = false, theme) {
+init({ parent, text, lang, offset = false, theme = morsel.defaultTheme }) {
+  var tl = text;
+  var pe = parent;
   var hl = document.createElement("pre");
   hl.id = "morsel-editor-highlight-layer";
   tl.contentEditable = true;
@@ -25,32 +45,15 @@ init: function(pe, tl, lang, offset = false, theme) {
   morsel.syntaxHighlight(hl, lang, theme);
   tl.oninput = function() {
      hl.innerHTML = tl.innerHTML;
-     morsel.syntaxHighlight(hl, lang, theme);
+     morsel.syntaxHighlight({ elmnt: hl, mode: lang, theme });
   }
 }
 
 },
 
-syntaxHighlight: function(elmnt, mode, theme = {
-    tagcolor: 'mediumblue',
-    tagnamecolor: 'brown',
-    attributecolor: 'red',
-    attributevaluecolor: 'mediumblue',
-    commentcolor: 'green',
-    cssselectorcolor: 'brown',
-    csspropertycolor: 'red',
-    csspropertyvaluecolor: 'mediumblue',
-    cssdelimitercolor: 'black',
-    cssimportantcolor: 'red',  
-    jscolor: 'black',
-    jskeywordcolor: 'mediumblue',
-    jsstringcolor: 'brown',
-    jsnumbercolor: 'red',
-    jspropertycolor: 'black'
-  })
-{
-  var lang = (mode || "html");
-  var elmntObj = (document.getElementById(elmnt) || elmnt);
+syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
+  var lang = (mode || "text");
+  var elmntObj = (document.querySelector(elmnt) || elmnt);
   var elmntTxt = elmntObj.innerHTML;
   var tagcolor = theme.tagcolor;
   var tagnamecolor = theme.tagnamecolor;
@@ -397,13 +400,13 @@ syntaxHighlight: function(elmnt, mode, theme = {
 
 function morselOnLoad() {
   Array.prototype.forEach.call(document.getElementsByClassName("morsel-html"), function(x) {
-    morsel.syntaxHighlight(x, "html");
+    morsel.syntaxHighlight({ elmnt: x, mode: "html" });
   });
   Array.prototype.forEach.call(document.getElementsByClassName("morsel-css"), function(x) {
-    morsel.syntaxHighlight(x, "css");
+    morsel.syntaxHighlight({ elmnt: x, mode: "css" });
   });
   Array.prototype.forEach.call(document.getElementsByClassName("morsel-js"), function(x) {
-    morsel.syntaxHighlight(x, "js");
+    morsel.syntaxHighlight({ elmnt: x, mode: "js" });
   });
 }
 
