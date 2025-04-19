@@ -57,6 +57,8 @@ Editor: class {
            this.update();
            return;
         }
+        this.#highlight.style.whiteSpace = "pre";
+        this.#text.style.whiteSpace = "pre";
         this.#text.innerHTML = "";
         this.#text.append(
             ...val.split("\n").map(function(x) {
