@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <script src="https://tiashdev.github.io/tiashfam-resources/morsel/index.js"></script>
-<body onload="morsel.editor.init({ parent: document.getElementById(&quot;morsel-editor&quot;), text: document.getElementById(&quot;morsel-editor-text-layer&quot;), lang: &quot;html&quot;, offset: true });">
+<body>
 
 <div id="morsel-editor">
 <pre id="morsel-editor-text-layer">
@@ -16,6 +16,28 @@
 &lt;/html&gt;
 </pre>
 </div>
+
+<p><button onclick="getText()">Get the text!</button></p>
+<p><button onclick="setText()">Set the text!</button></p>
+
+<pre id="demo"></pre>
+
+<script>
+const editor = morsel.editor.init({ 
+  parent: document.getElementById("morsel-editor"), 
+  text: document.getElementById("morsel-editor-text-layer"), 
+  lang: "html", 
+  offset: true 
+});
+
+function getText() {
+  document.getElementById("demo").innerText = editor.text;
+}
+
+function setText() {
+  editor.text = "<p>Hello world, this is my updated text!</p>"
+}
+</script>
 
 </body>
 </html>
