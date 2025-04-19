@@ -58,7 +58,7 @@ Editor: class {
 
     update() {
         if (!this.#text.innerHTML) 
-            if (!this.#linenums) 
+            if (this.#linenums) 
                this.#text.innerHTML = "<li></li>";
             else
                this.#text.innerHTML = "<div></div>";
