@@ -71,7 +71,7 @@ Editor: class {
         }
 
         pushTextNode(this.#text);
-        return textNodes.join("");
+        return textNodes.join("\n");
     }
 
     set text(val) {
