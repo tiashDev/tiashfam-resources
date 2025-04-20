@@ -53,6 +53,7 @@ Editor: class {
 
     set theme(val) {
         this.#theme = val;
+        this.#text.style.caretColor = val.editor.cursorcolor;
         this.update();
     }
 
