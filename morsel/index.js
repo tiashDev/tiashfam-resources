@@ -15,7 +15,10 @@ defaultTheme: {
     jskeywordcolor: 'mediumblue',
     jsstringcolor: 'brown',
     jsnumbercolor: 'red',
-    jspropertycolor: 'black'
+    jspropertycolor: 'black',
+    editor: {
+        cursorcolor: "black"
+    }
   },
 
 editor: {
@@ -130,7 +133,7 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
   tl.style.height = "100%";
   tl.style.zIndex = 2;
   tl.style.color = "transparent";
-  tl.style.caretColor = "black";
+  tl.style.caretColor = theme.editor.cursorcolor;
   tl.style.outline = "none";
   tl.spellcheck = false;
   if (offset) {tl.style.top = "-16px";}
