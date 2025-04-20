@@ -24,27 +24,6 @@
 
 <pre id="demo"></pre>
 
-<h2>Did I mention line numbers are supported too?</h2>
-
-<div id="morsel-editor-line-numbers">
-<ol id="morsel-editor-text-layer-line-numbers">
-<li>&lt;!DOCTYPE html&gt;</li>
-<li>&lt;html&gt;</li>
-<li>&lt;body&gt;</li>
-<li></li>
-<li>&lt;h1&gt;Testing an HTML Syntax Highlighter&lt;/h1&gt;</li>
-<li>&lt;p&gt;Hello world!&lt;/p&gt;</li>
-<li></li>
-<li>&lt;/body&gt;</li>
-<li>&lt;/html&gt;</li>
-</ol>
-</div>
-
-<p><button onclick="getText2()">Get the text!</button></p>
-<p><button onclick="setText2()">Set the text!</button></p>
-
-<pre id="demo2"></pre>
-
 <script>
 const textToSet = "<p>Hello world, this is my updated text!</p>\n<p>Multiline!</p>";
 
@@ -61,22 +40,6 @@ function getText() {
 
 function setText() {
   editor.text = textToSet;
-}
-
-const editor2 = morsel.editor.init({ 
-  parent: document.getElementById("morsel-editor-line-numbers"), 
-  text: document.getElementById("morsel-editor-text-layer-line-numbers"), 
-  lang: "html", 
-  offset: true,
-  linenums: true
-});
-
-function getText2() {
-  document.getElementById("demo2").innerText = editor2.text;
-}
-
-function setText2() {
-  editor2.text = textToSet;
 }
 </script>
 
