@@ -56,14 +56,14 @@ Editor: class {
     get text() {
         // thx stackoverflow!!
         const textNodes = []
-
+        var linenums = this.#linenums;
         function pushTextNode(node) {
             if (node.nodeName === "#text") {
                 const nodeVal = node.nodeValue.trim();
                 if (nodeVal) {
                    textNodes.push(nodeVal);
                 } else {
-                   if (!this.#linenums) {
+                   if (!linenums) {
                       textNodes.push("\n");
                    }
                 }
