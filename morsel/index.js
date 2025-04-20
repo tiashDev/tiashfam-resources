@@ -39,16 +39,39 @@ Editor: class {
         return this.#lang;
     }
 
-    set lang(_) {throw new Error("cannot set langauge of Editor after initialization");}
+    set lang(val) {
+        this.#lang = val;
+        this.update();
+    }
 
     get theme() {
         return this.#theme;
     }
 
-    set theme(_) {throw new Error("cannot set theme of Editor after initialization");}
+    set theme(val) {
+        this.#theme = val;
+        this.update();
+    }
 
     get text() {
-        return this.#text.textContent;
+        // thx stackoverflow!!
+        const textNodes = []
+
+        function pushTextNode(node) {
+            if (node.nodeName === "#text") {
+                const nodeVal = node.nodeValue.trim();
+                if (nodeVal) {
+                   textNodes.push(nodeVal);
+                }
+                return;
+            }
+            node.childNodes.forEach((childNode) => {
+                pushTextNode(childNode);
+            });
+        }
+
+        pushTextNode(this.#text);
+        return textNodes.join("");
     }
 
     set text(val) {
