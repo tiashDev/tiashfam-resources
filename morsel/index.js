@@ -63,7 +63,9 @@ Editor: class {
                 if (nodeVal) {
                    textNodes.push(nodeVal);
                 } else {
-                   textNodes.push("\n");
+                   if (!this.#linenums) {
+                      textNodes.push("\n");
+                   }
                 }
                 return;
             }
