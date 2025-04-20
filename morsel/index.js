@@ -62,6 +62,8 @@ Editor: class {
                 const nodeVal = node.nodeValue.trim();
                 if (nodeVal) {
                    textNodes.push(nodeVal);
+                } else {
+                   textNodes.push("\n");
                 }
                 return;
             }
