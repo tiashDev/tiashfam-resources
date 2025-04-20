@@ -73,6 +73,7 @@ Editor: class {
         }
 
         pushTextNode(this.#text);
+        debugger;
         return textNodes.join("\n");
     }
 
