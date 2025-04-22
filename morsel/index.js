@@ -21,6 +21,8 @@ defaultTheme: {
     }
   },
 
+customLanguages: {},
+
 editor: {
 
 Editor: class {
@@ -162,6 +164,34 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
 
 },
 
+_extract(str, start, end, func, repl) {
+    var s, e, d = "", a = [];
+    while (str.search(start) > -1) {
+      s = str.search(start);
+      e = str.indexOf(end, s);
+      if (e == -1) {e = str.length;}
+      if (repl) {
+        a.push(func(str.substring(s, e + (end.length))));      
+        str = str.substring(0, s) + repl + str.substr(e + (end.length));
+      } else {
+        d += str.substring(0, s);
+        d += func(str.substring(s, e + (end.length)));
+        str = str.substr(e + (end.length));
+      }
+    }
+    this.rest = d + str;
+    this.arr = a;
+},
+
+callMode(lang, text, theme) {
+    var newLang = {...lang}; // not a deepcopy, but structuredClone doesn't work with functions. this will do.
+    newLang.createExtract = ({ str, start, end, callback, repl = "" }) => {
+        return new morsel._extract(str, start, end, callback, repl);
+    };
+    newLang.theme = theme;
+    return newLang.mode(text);
+},
+
 syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
   var lang = (mode || "text");
   var elmntObj = (document.getElementById(elmnt) || elmnt);
@@ -187,26 +217,10 @@ syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
   if (lang == "css") {elmntTxt = cssMode(elmntTxt);}
   if (lang == "js") {elmntTxt = jsMode(elmntTxt);}
   if (lang == "sgml") {elmntTxt = sgmlMode(elmntTxt);}
+  if (lang in this.customLanguages) {elmntTxt = this.callMode(this.customLanguages[lang], elmntTxt, theme)}
   elmntObj.innerHTML = elmntTxt;
 
-  function extract(str, start, end, func, repl) {
-    var s, e, d = "", a = [];
-    while (str.search(start) > -1) {
-      s = str.search(start);
-      e = str.indexOf(end, s);
-      if (e == -1) {e = str.length;}
-      if (repl) {
-        a.push(func(str.substring(s, e + (end.length))));      
-        str = str.substring(0, s) + repl + str.substr(e + (end.length));
-      } else {
-        d += str.substring(0, s);
-        d += func(str.substring(s, e + (end.length)));
-        str = str.substr(e + (end.length));
-      }
-    }
-    this.rest = d + str;
-    this.arr = a;
-  }
+  var extract = this._extract;
   function htmlMode(txt) {
     var rest = txt, done = "", php, comment, angular, startpos, endpos, note, i;
     comment = new extract(rest, "&lt;!--", "--&gt;", commentMode, "W3HTMLCOMMENTPOS");
