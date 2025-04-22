@@ -166,13 +166,8 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
 
 callMode(lang, text, theme, extract) {
     var newLang = {...lang}; // not a deepcopy, but structuredClone doesn't work with functions. this will do.
-    newLang._extract = extract;
-    console.debug(extract);
-    console.debug(newLang._extract);
     newLang.createExtract = ({ str, start, end, callback, repl = "" }) => {
-        console.debug(this._extract);
-        console.debug(this);
-        return new this._extract(str, start, end, callback, repl);
+        return new extract(str, start, end, callback, repl);
     };
     newLang.theme = theme;
     return newLang.mode(text);
