@@ -219,7 +219,7 @@ syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
   if (lang == "css") {elmntTxt = cssMode(elmntTxt);}
   if (lang == "js") {elmntTxt = jsMode(elmntTxt);}
   if (lang == "sgml") {elmntTxt = sgmlMode(elmntTxt);}
-  if (lang in this.customLanguages) {elmntTxt = this.callMode(this.customLanguages[lang], elmntTxt, theme)}
+  if (lang in this.customLanguages) {elmntTxt = this.callMode(this.customLanguages[lang], elmntTxt, theme, extract)}
   elmntObj.innerHTML = elmntTxt;
 
   function htmlMode(txt) {
