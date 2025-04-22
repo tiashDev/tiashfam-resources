@@ -220,7 +220,7 @@ syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
   if (lang in this.customLanguages) {elmntTxt = this.callMode(this.customLanguages[lang], elmntTxt, theme)}
   elmntObj.innerHTML = elmntTxt;
 
-  const extract = this._extract;
+  var extract = this._extract;
   function htmlMode(txt) {
     console.debug(extract);
     var rest = txt, done = "", php, comment, angular, startpos, endpos, note, i;
