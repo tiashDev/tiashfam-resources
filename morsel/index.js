@@ -164,29 +164,11 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
 
 },
 
-_extract(str, start, end, func, repl) {
-    var s, e, d = "", a = [];
-    while (str.search(start) > -1) {
-      s = str.search(start);
-      e = str.indexOf(end, s);
-      if (e == -1) {e = str.length;}
-      if (repl) {
-        a.push(func(str.substring(s, e + (end.length))));      
-        str = str.substring(0, s) + repl + str.substr(e + (end.length));
-      } else {
-        d += str.substring(0, s);
-        d += func(str.substring(s, e + (end.length)));
-        str = str.substr(e + (end.length));
-      }
-    }
-    this.rest = d + str;
-    this.arr = a;
-},
-
-callMode(lang, text, theme) {
+callMode(lang, text, theme, extract) {
     var newLang = {...lang}; // not a deepcopy, but structuredClone doesn't work with functions. this will do.
+    newLang._extract = extract;
     newLang.createExtract = ({ str, start, end, callback, repl = "" }) => {
-        return new morsel._extract(str, start, end, callback, repl);
+        return new this._extract(str, start, end, callback, repl);
     };
     newLang.theme = theme;
     return newLang.mode(text);
@@ -212,6 +194,26 @@ syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
   var jsnumbercolor = theme.jsnumbercolor;
   var jspropertycolor = theme.jspropertycolor;
   elmntObj.style.fontFamily = "Consolas,'Courier New', monospace";
+
+  function extract(str, start, end, func, repl) {
+    var s, e, d = "", a = [];
+    while (str.search(start) > -1) {
+      s = str.search(start);
+      e = str.indexOf(end, s);
+      if (e == -1) {e = str.length;}
+      if (repl) {
+        a.push(func(str.substring(s, e + (end.length))));      
+        str = str.substring(0, s) + repl + str.substr(e + (end.length));
+      } else {
+        d += str.substring(0, s);
+        d += func(str.substring(s, e + (end.length)));
+        str = str.substr(e + (end.length));
+      }
+    }
+    this.rest = d + str;
+    this.arr = a;
+  }
+  
   if (!lang) {lang = "html"; }
   if (lang == "html") {elmntTxt = htmlMode(elmntTxt);}
   if (lang == "css") {elmntTxt = cssMode(elmntTxt);}
@@ -220,7 +222,6 @@ syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
   if (lang in this.customLanguages) {elmntTxt = this.callMode(this.customLanguages[lang], elmntTxt, theme)}
   elmntObj.innerHTML = elmntTxt;
 
-  var extract = morsel._extract;
   function htmlMode(txt) {
     console.debug(extract);
     var rest = txt, done = "", php, comment, angular, startpos, endpos, note, i;
