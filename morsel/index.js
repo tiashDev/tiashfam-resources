@@ -222,6 +222,7 @@ syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
 
   const extract = this._extract;
   function htmlMode(txt) {
+    console.debug(extract);
     var rest = txt, done = "", php, comment, angular, startpos, endpos, note, i;
     comment = new extract(rest, "&lt;!--", "--&gt;", commentMode, "W3HTMLCOMMENTPOS");
     rest = comment.rest;
