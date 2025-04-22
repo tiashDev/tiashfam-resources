@@ -169,7 +169,6 @@ callMode(lang, text, theme, extract) {
         _extract: extract,
         theme,
         createExtract({ str, start, end, callback, repl = "" }) {
-           console.debug(this.theme);
            return new this._extract(str, start, end, callback, repl);
         },
         ...lang
