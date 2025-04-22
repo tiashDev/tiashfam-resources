@@ -168,6 +168,7 @@ callMode(lang, text, theme, extract) {
     var newLang = {...lang}; // not a deepcopy, but structuredClone doesn't work with functions. this will do.
     newLang._extract = extract;
     console.debug(extract);
+    console.debug(newLang._extract);
     newLang.createExtract = ({ str, start, end, callback, repl = "" }) => {
         return new this._extract(str, start, end, callback, repl);
     };
