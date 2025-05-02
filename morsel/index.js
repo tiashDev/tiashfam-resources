@@ -208,7 +208,7 @@ syntaxHighlight({ elmnt, mode, theme = morsel.defaultTheme }) {
     var s, e, d = "", a = [];
     while (str.search(start) > -1) {
       s = str.search(start);
-      e = str.indexOf(end, s+1);
+      e = str.indexOf(end, s+2);
       if (e == -1) {e = str.length;}
       if (repl) {
         a.push(func(str.substring(s, e + (end.length))));      
