@@ -171,13 +171,6 @@ callMode(lang, text, theme, extract) {
         createExtract({ str, start, end, callback, repl = "" }) {
            return new this._extract(str, start, end, callback, repl);
         },
-        getPos(txt, start, end, func) {
-                var s, e;
-                s = txt.search(start);
-                e = txt.indexOf(end, s + (end.length));
-                if (e == -1) {e = txt.length;}
-                return [s, e + (end.length), func];
-        },
         ...lang
     };
     return newLang.mode(text);
