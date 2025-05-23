@@ -145,21 +145,21 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
   var editobj = new this.Editor(tl, lang, hl, theme, linenums);
   editobj.update();
   tl.oninput = () => editobj.update();
+  tl.addEventListener("paste", function(e) { // stackoverflow (tweaked)
+    e.preventDefault();
+    document.execCommand("insertText", false, e.clipboardData.getData("text/plain"));
+  });
   if (captureTab) {
-    tl.addEventListener("paste", function(e) { // stackoverflow (tweaked)
-      e.preventDefault();
-      document.execCommand("insertText", false, e.clipboardData.getData("text/plain"));
-    });
     tl.addEventListener("keydown", function(e) { // stackoverfow (also tweaked)
       if (e.keyCode == 9) {
         document.execCommand('insertHTML', false, '&#009');
         e.preventDefault();   
       }
     });
-    tl.addEventListener("dragstart", function(e) {
-      e.preventDefault();
-    });
   }
+  tl.addEventListener("dragstart", function(e) {
+    e.preventDefault();
+  });
   return editobj;
 }
 
