@@ -117,7 +117,7 @@ Editor: class {
     }
 },
 
-init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums = false }) {
+init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums = false, captureTab = false }) {
   var tl = text;
   var pe = parent;
   if (!linenums) {
@@ -145,7 +145,7 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
   var editobj = new this.Editor(tl, lang, hl, theme, linenums);
   editobj.update();
   tl.oninput = () => editobj.update();
-
+  if (captureTab) {
     tl.addEventListener("paste", function(e) { // stackoverflow (tweaked)
       e.preventDefault();
       document.execCommand("insertText", false, e.clipboardData.getData("text/plain"));
@@ -159,6 +159,7 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
     tl.addEventListener("dragstart", function(e) {
       e.preventDefault();
     });
+  }
   return editobj;
 }
 
