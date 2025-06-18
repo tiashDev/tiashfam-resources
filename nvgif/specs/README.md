@@ -11,6 +11,6 @@ NVGIF doesn’t aim to be a universal format. It aims to be *yours*. And it shal
 
 ## 🖥️ Decoder Support
 
-**AirSquirrel** is a lightweight NVGIF-aware web browser built with WebView2, designed for smooth offline rendering and testing. It intercepts image requests from local servers, decodes `.nvg` files on the fly, and displays results in a responsive interface—making it ideal for developing and validating NVGIF content in real time.
+**AirSquirrel** is a lightweight web browser built using WebView2 for fast, offline-friendly browsing. While its primary purpose is general navigation and rendering, it includes native support for decoding `.nvg` images. It does so by intercepting HTTP requests for NVGIF files and converting them to standard PNGs at runtime—making NVGIFs viewable just like any other image format inside the browser.
 
-It’s not just a viewer. It’s the squirrel’s official window into the format’s soul.
+Smooth scrolling, JS alert overrides, favicon handling, and local virtual hosting are all built-in. NVGIF support is simply one of its quirks.
