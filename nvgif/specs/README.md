@@ -67,6 +67,12 @@ nvgif.exe update input.nvg output.nvg
 ```
 > Uses default target version (v4) and matching default compression settings.
 
+View an NVGIF image in a resizable window:
+```batch
+nvgif.exe view image.nvg
+```
+> Launches a graphical window with the image rendered over a checkerboard background (for transparency), auto-scaled to fit the screen. Handy for previewing `.nvg` files without converting to PNG.
+
 For more options, run:
 ```batch
 nvgif.exe --help
