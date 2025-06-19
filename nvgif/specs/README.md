@@ -43,6 +43,30 @@ Display an NVGIF file's header and metadata:
 nvgif.exe info input.nvg
 ```
 
+Update an `.nvg` file to a newer NVGIF version:
+```batch
+nvgif.exe update old.nvg updated.nvg --version 4
+```
+> Re-encodes `old.nvg` as NVGIF v4 using default compression (e.g. `rlezlib` if unspecified).
+
+Customize compression and alpha support:
+```batch
+nvgif.exe update input.nvg output.nvg --version 4 --compression rle --alpha
+```
+> Converts to v4 using RLE compression and enables transparency.
+
+Downgrade to v2 for compatibility testing:
+```batch
+nvgif.exe update image.nvg legacy.nvg --version 2 --compression rle
+```
+> Produces a v2-compatible file with RLE compression, suitable for older decoders.
+
+Let NVGIF CLI choose sensible defaults:
+```batch
+nvgif.exe update input.nvg output.nvg
+```
+> Uses default target version (v4) and matching default compression settings.
+
 For more options, run:
 ```batch
 nvgif.exe --help
