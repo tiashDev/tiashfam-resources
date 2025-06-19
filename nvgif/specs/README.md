@@ -22,4 +22,30 @@ A standalone NVGIF encoder/decoder is available as a command-line utility for Wi
 
 You can [download the latest NVGIF CLI here](https://drive.google.com/uc?export=download&id=1oGu3PTlAsCwdeyNMOkjsmXBtXkHHcn8u).
 
+> ⚠️ Google Drive may warn that it can't scan this file for viruses. This is expected for `.exe` files and doesn't indicate a problem—it's simply too large for Drive’s built-in scanner. The file is safe and was built from source using the **Python** implementation of the NVGIF spec.
+
 This tool is ideal for scripting, testing, or integrating NVGIF into your own pipelines—no GUI required.
+
+### 🔧 Example Usage
+
+Encode a PNG file into NVGIF v4:
+```batch
+nvgif.exe encode input.png output.nvg --version 4
+```
+
+Decode an `.nvg` file to raw RGBA:
+```batch
+nvgif.exe decode input.nvg output.raw
+```
+
+Display an NVGIF file's header and metadata:
+```batch
+nvgif.exe info input.nvg
+```
+
+For more options, run:
+```batch
+nvgif.exe --help
+```
+
+These examples assume you're running the CLI in the same directory as the executable. Adjust paths as needed!
