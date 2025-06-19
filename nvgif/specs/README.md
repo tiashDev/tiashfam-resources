@@ -33,9 +33,9 @@ Encode a PNG file into NVGIF v4:
 nvgif.exe encode input.png output.nvg --version 4
 ```
 
-Decode an `.nvg` file to raw RGBA:
+Convert an `.nvg` file back into a standard PNG:
 ```batch
-nvgif.exe decode input.nvg output.raw
+nvgif.exe decode input.nvg output.png
 ```
 
 Display an NVGIF file's header and metadata:
