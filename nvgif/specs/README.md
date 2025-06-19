@@ -15,3 +15,11 @@ NVGIF doesn’t aim to be a universal format. It aims to be *yours*. And it shal
 
 It features custom alerts, favicon overrides, PDF export, and a customizable Speed Dial interface (served from disk).  
 AirSquirrel also serves as the **C# reference implementation** of the NVGIF decoder discussed earlier in this document.
+
+## 🛠️ NVGIF CLI Tool
+
+A standalone NVGIF encoder/decoder is available as a command-line utility for Windows. It supports version-aware encoding, decoding, and header inspection across all NVGIF versions.
+
+You can [download the latest NVGIF CLI here](https://drive.google.com/uc?export=download&id=1oGu3PTlAsCwdeyNMOkjsmXBtXkHHcn8u).
+
+This tool is ideal for scripting, testing, or integrating NVGIF into your own pipelines—no GUI required.
