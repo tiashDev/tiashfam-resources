@@ -160,6 +160,7 @@ init({ parent, text, lang, offset = false, theme = morsel.defaultTheme, linenums
   tl.addEventListener("dragstart", function(e) {
     e.preventDefault();
   });
+  tl.addEventListener("undo", function(e) {editobj.update()});
   return editobj;
 }
 
